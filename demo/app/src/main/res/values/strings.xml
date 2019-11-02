@@ -1,7 +1,9 @@
-
 <resources>
-<string name="app_name">My TestDemo</string>
-<string name="jsonData">{
+    <string name="app_name">My TestDemo</string>
+    <string name="gravity_left">left</string>
+    <string name="gravity_center">center</string>
+    <string name="gravity_right">right</string>
+    <string name="jsonData">{
         "attributes": [
         {
             "tabID": 0,
