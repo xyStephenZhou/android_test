@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import juesheng.com.testdemo.R;
@@ -32,7 +33,7 @@ public class CategoryActivity extends AppCompatActivity
     private TagFlowLayout mFlowLayout;
     private TagAdapter<String> mAdapter ;
     private TextView textView;
-
+    private Set<Integer> allSelectPosSet=new HashSet<>();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -53,7 +54,11 @@ public class CategoryActivity extends AppCompatActivity
                 return tv;
             }
         });
-        mAdapter.setSelectedList(1,3,5,7,8,9);
+        Set<Integer>set=new HashSet<>();
+        set.add(1);
+        set.add(3);
+        set.add(4);
+        mAdapter.setSelectedList(set);
         mFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener()
         {
             @Override
@@ -63,13 +68,16 @@ public class CategoryActivity extends AppCompatActivity
             }
         });
 
-
         mFlowLayout.setOnSelectListener(new TagFlowLayout.OnSelectListener()
         {
             @Override
             public void onSelected(Set<Integer> selectPosSet)
             {
-                textView.setText("choose:" + selectPosSet.toString());
+                if(!allSelectPosSet.isEmpty()){
+                    allSelectPosSet.clear();
+                }
+                allSelectPosSet.addAll(selectPosSet);
+                textView.setText("choose:" + allSelectPosSet.toString());
             }
         });
 
